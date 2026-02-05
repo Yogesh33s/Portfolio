@@ -101,10 +101,10 @@ const Index = () => {
                 <div className="w-96 h-96 mx-auto rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 p-2 shadow-2xl shadow-cyan-400/20">
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-4 border-gray-700/50">
                     <img
-  src="./public/temp.jpeg"
-  alt="Yogesh Profile"
-  className="w-80 h-80 rounded-full object-cover shadow-inner"
-/>
+                        src="./public/myphoto.jpg"
+                            alt="Yogesh Profile"
+                            className="w-80 h-80 rounded-full object-cover shadow-inner"
+                          />
 
                   </div>
                 </div>
