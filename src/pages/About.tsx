@@ -72,29 +72,6 @@ const About = () => {
               Work Experience
             </h2>
             <div className="space-y-6">
-              {/* DevOps Intern */}
-              <div className="bg-gray-800/50 rounded-2xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">DevOps Intern</h3>
-                    <p className="text-green-400 font-medium mb-2">Codeteck</p>
-                    <div className="flex items-center gap-4 text-gray-400 text-sm mb-3">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        June 2025 - Present
-                      </span>
-                    </div>
-                    <p className="text-gray-300">
-                      Working on GitHub Actions, CI/CD pipelines, and automation tasks. 
-                      Gaining hands-on experience with modern DevOps practices and tools.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* Data Science Intern */}
               <div className="bg-gray-800/50 rounded-2xl p-8">
                 <div className="flex items-start gap-4">
