@@ -132,7 +132,7 @@ const Index = () => {
       {/* Quick Stats */}
       <section className="py-16 px-6 bg-gray-800/50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="animate-fade-in">
               <div className="text-3xl font-bold text-cyan-400 mb-2">8+</div>
               <div className="text-gray-300">CGPA</div>
@@ -141,10 +141,7 @@ const Index = () => {
               <div className="text-3xl font-bold text-cyan-400 mb-2">7+</div>
               <div className="text-gray-300">Projects Completed</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">2</div>
-              <div className="text-gray-300">Active Internships</div>
-            </div>
+            
             <div className="animate-fade-in">
               <div className="text-3xl font-bold text-cyan-400 mb-2">5+</div>
               <div className="text-gray-300">Technologies</div>
@@ -166,11 +163,11 @@ const Index = () => {
               <Phone className="w-5 h-5" />
               <span>7495086033</span>
             </a>
-            <a href="#" className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all">
+            <a href="https://www.linkedin.com/in/yogesh33/" className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all">
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
             </a>
-            <a href="#" className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all">
+            <a href="https://github.com/Yogesh33s" className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all">
               <Github className="w-5 h-5" />
               <span>GitHub</span>
             </a>
