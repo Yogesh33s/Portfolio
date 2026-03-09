@@ -10,7 +10,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold text-white">
-              Yogesh<span className="text-cyan-400">.</span>
+              Yogesh<span className="text-cyan-400"></span>
             </div>
             <div className="hidden md:flex space-x-8">
               <Link to="/" className="text-gray-300 hover:text-cyan-400 transition-colors">Home</Link>
@@ -74,18 +74,23 @@ const Index = () => {
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                 </Button>
-                <Button variant="outline" className="border-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 px-10 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300">
-                  <Download className="w-5 h-5 mr-3" />
-                  Download Resume
-                </Button>
+               <a href="/YogeshCV.pdf" download>
+                  <Button
+                    variant="outline"
+                    className="border-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 px-10 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300"
+                  >
+                    <Download className="w-5 h-5 mr-3" />
+                    Download Resume
+                  </Button>
+                </a>
               </div>
               
               {/* Social Links */}
               <div className="flex gap-4 pt-6">
-                <a href="#" className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300 backdrop-blur-sm">
+                <a href="https://github.com/Yogesh33s" className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300 backdrop-blur-sm">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300 backdrop-blur-sm">
+                <a href="https://www.linkedin.com/in/yogesh33/" className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300 backdrop-blur-sm">
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a href="mailto:yogeshranwa33@gmail.com" className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300 backdrop-blur-sm">

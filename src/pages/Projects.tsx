@@ -63,7 +63,7 @@ const Projects = () => {
     }
   ];
 
-  const categories = ["All", "Web Development", "Data Science", "DevOps", "Algorithm Visualization", "System Programming"];
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -79,21 +79,8 @@ const Projects = () => {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={category === "All" ? "default" : "outline"}
-                className={category === "All" 
-                  ? "bg-cyan-400 hover:bg-cyan-500 text-gray-900" 
-                  : "border-gray-600 text-gray-300 hover:bg-gray-700"
-                }
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
+        
+        
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
