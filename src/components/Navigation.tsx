@@ -23,7 +23,7 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold text-white hover:text-cyan-400 transition-colors">
-            Yogesh<span className="text-cyan-400">.</span>
+            Yogesh<span className="text-cyan-400"></span>
           </Link>
           
           {/* Desktop Navigation */}

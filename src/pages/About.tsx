@@ -49,7 +49,7 @@ const About = () => {
                   <div className="flex items-center gap-4 text-gray-400 text-sm">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
-                      2022 - 2026
+                      2023 - 2027
                     </span>
                     <span className="flex items-center gap-1">
                       <MapPin className="w-4 h-4" />

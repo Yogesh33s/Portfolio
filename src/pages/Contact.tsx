@@ -1,4 +1,4 @@
-
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,45 +11,80 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
+
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    setFormData({ name: "", email: "", message: "" });
+
+    emailjs
+      .send(
+        "service_rc36zij", // service id
+        "template_5ioppo9", // template id
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        "nszs9CasY9n2vImE1" // public key
+      )
+      .then(
+        () => {
+          toast({
+            title: "Message Sent!",
+            description: "Thank you for reaching out. I'll get back to you soon!",
+          });
+
+          setFormData({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        () => {
+          toast({
+            title: "Error",
+            description: "Failed to send message. Please try again.",
+          });
+        }
+      );
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Navigation />
-      
+
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-5xl font-bold text-white mb-6">Get In <span className="text-cyan-400">Touch</span></h1>
+            <h1 className="text-5xl font-bold text-white mb-6">
+              Get In <span className="text-cyan-400">Touch</span>
+            </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, projects, or just having a conversation about technology
+              I'm always open to discussing new opportunities, projects, or just
+              having a conversation about technology
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div className="animate-fade-in">
-              <h2 className="text-3xl font-bold text-white mb-8">Let's Connect</h2>
-              
+              <h2 className="text-3xl font-bold text-white mb-8">
+                Let's Connect
+              </h2>
+
               <div className="space-y-6 mb-8">
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-colors">
                   <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center">
@@ -57,10 +92,12 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold">Email</h3>
-                    <p className="text-gray-300">yogeshranwa33@gmail.com</p>
+                    <p className="text-gray-300">
+                      yogeshranwa33@gmail.com
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-colors">
                   <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                     <Phone className="w-6 h-6 text-white" />
@@ -70,7 +107,7 @@ const Contact = () => {
                     <p className="text-gray-300">+91 7495086033</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-colors">
                   <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-white" />
@@ -84,16 +121,23 @@ const Contact = () => {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-xl font-bold text-white mb-4">Follow Me</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Follow Me
+                </h3>
                 <div className="flex gap-4">
-                  <a 
-                    href="#" 
+                  <a
+                    href="https://www.linkedin.com/in/yogesh33/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
                   >
                     <Linkedin className="w-6 h-6 text-white" />
                   </a>
-                  <a 
-                    href="#" 
+
+                  <a
+                    href="https://github.com/Yogesh33s"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors"
                   >
                     <Github className="w-6 h-6 text-white" />
@@ -105,15 +149,16 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="animate-scale-in">
               <div className="bg-gray-800/50 rounded-2xl p-8">
-                <h2 className="text-2xl font-bold text-white mb-6">Send Message</h2>
-                
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  Send Message
+                </h2>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
+                    <label className="block text-gray-300 font-medium mb-2">
                       Full Name
                     </label>
                     <Input
-                      id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
@@ -122,13 +167,12 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
+                    <label className="block text-gray-300 font-medium mb-2">
                       Email Address
                     </label>
                     <Input
-                      id="email"
                       name="email"
                       type="email"
                       value={formData.email}
@@ -138,13 +182,12 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-gray-300 font-medium mb-2">
+                    <label className="block text-gray-300 font-medium mb-2">
                       Message
                     </label>
                     <Textarea
-                      id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
@@ -153,8 +196,11 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
-                  <Button type="submit" className="w-full bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-semibold py-3">
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-semibold py-3"
+                  >
                     <Send className="w-5 h-5 mr-2" />
                     Send Message
                   </Button>
