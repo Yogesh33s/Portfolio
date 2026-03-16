@@ -79,17 +79,21 @@ const About = () => {
                     <Briefcase className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Data Science Intern</h3>
-                    <p className="text-blue-400 font-medium mb-2">Skillcraft Technologies</p>
+                    <h3 className="text-xl font-semibold text-white mb-2">PL/SQL Training</h3>
+                    <p className="text-blue-400 font-medium mb-2">Database Programming</p>
+
                     <div className="flex items-center gap-4 text-gray-400 text-sm mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        June 2025
+                        June 2025 - July 2026
                       </span>
                     </div>
+
                     <p className="text-gray-300">
-                      Worked on EDA (Exploratory Data Analysis) and data handling projects. 
-                      Applied statistical analysis and data visualization techniques to real-world datasets.
+                      Completed training in PL/SQL focusing on database programming concepts. 
+                      Worked with SQL queries, stored procedures, functions, triggers, and 
+                      database management techniques to handle and manipulate relational data 
+                      efficiently using Oracle Database.
                     </p>
                   </div>
                 </div>
@@ -107,7 +111,7 @@ const About = () => {
                     <div className="flex items-center gap-4 text-gray-400 text-sm mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        ~6 months
+                        Aug 2024 - Feb 2025 
                       </span>
                     </div>
                     <p className="text-gray-300">
