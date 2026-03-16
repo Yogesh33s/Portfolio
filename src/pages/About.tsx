@@ -69,7 +69,7 @@ const About = () => {
           <div className="mb-12 animate-fade-in">
             <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
               <Briefcase className="text-cyan-400" />
-              Work Experience
+              Learning Experience
             </h2>
             <div className="space-y-6">
               {/* Data Science Intern */}
