@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import { Link } from "react-router-dom";
 
 const certificates = [
     {
@@ -66,7 +67,7 @@ const certificates = [
 
 const Certificates = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="theme-page min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       
       <Navigation />
 
@@ -93,13 +94,17 @@ const Certificates = () => {
                 className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden hover:scale-105 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.35)] transition duration-300"
               >
 
-                <a href={cert.image} target="_blank">
+                <Link
+                  to={`/certificate?title=${encodeURIComponent(cert.title)}&issuer=${encodeURIComponent(cert.issuer)}&image=${encodeURIComponent(cert.image)}&source=certificates`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={cert.image}
                     alt={cert.title}
                     className="w-full h-60 object-cover"
                   />
-                </a>
+                </Link>
 
                 <div className="p-5 text-center">
 

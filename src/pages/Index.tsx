@@ -1,219 +1,224 @@
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
+  Code2,
+  Database,
   Download,
+  GraduationCap,
   Github,
   Linkedin,
+  Laptop,
   Mail,
-  Phone,
+  MapPin,
   Sparkles,
-  Code,
-  Database,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 
+const stats = [
+  { value: "8+", label: "CGPA", icon: GraduationCap },
+  { value: "7+", label: "Projects Built", icon: Code2 },
+  { value: "5+", label: "Core Technologies", icon: Laptop },
+];
+
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-
-      {/* Navigation */}
+    <div className="theme-page min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_18%,_rgba(56,189,248,0.2),_transparent_20%),radial-gradient(circle_at_80%_14%,_rgba(168,85,247,0.16),_transparent_22%),radial-gradient(circle_at_50%_100%,_rgba(14,165,233,0.12),_transparent_26%),linear-gradient(145deg,_#020617_0%,_#0b1220_38%,_#111827_100%)]">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-40 pb-20 px-6 relative overflow-hidden">
-        
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <main className="relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="hero-bg absolute inset-0"></div>
+          <div className="hero-grid absolute inset-0 opacity-30"></div>
+          <div className="light-wallpaper absolute inset-0 opacity-0"></div>
+          <div className="absolute left-[10%] top-[18%] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(37,99,235,0.18),_transparent_58%)] blur-3xl"></div>
+          <div className="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_42%)]"></div>
+          <div className="absolute left-[2%] top-20 h-64 w-64 rounded-full border border-cyan-300/10 bg-cyan-300/[0.04] blur-[2px]"></div>
+          <div className="absolute right-[5%] top-16 h-72 w-72 rounded-[2.5rem] border border-fuchsia-300/10 bg-fuchsia-300/[0.03] rotate-12"></div>
+          <div className="absolute left-[15%] bottom-16 h-52 w-52 rounded-[2rem] border border-white/10 bg-white/[0.03] -rotate-12"></div>
+          <div className="absolute right-[18%] bottom-14 h-36 w-36 rounded-full border border-sky-300/10 bg-sky-300/[0.04]"></div>
+          <div className="absolute left-[8%] top-24 h-80 w-80 rounded-full bg-cyan-400/14 blur-3xl hero-float"></div>
+          <div className="absolute right-[8%] top-36 h-96 w-96 rounded-full bg-violet-500/12 blur-3xl hero-float-delayed"></div>
+          <div className="absolute bottom-10 left-1/3 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl hero-float"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Left Section */}
-            <div className="space-y-8">
-
-              {/* Welcome badge */}
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 border border-cyan-400/20 text-cyan-400 px-6 py-3 rounded-full text-sm font-medium backdrop-blur-sm">
-                <Sparkles className="w-4 h-4" />
-                Welcome to my Portfolio
+        <section className="relative px-6 pb-20 pt-28 sm:pt-32">
+          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-16">
+            <div className="space-y-8 animate-fade-in lg:pr-10">
+              <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-cyan-200 backdrop-blur-md">
+                <Sparkles className="h-4 w-4" />
+                Welcome to my portfolio
               </div>
 
-              {/* Heading */}
-              <div className="space-y-4">
-                <h1 className="text-6xl lg:text-8xl font-black text-white leading-tight">
-                  <span className="block">HI, I'M</span>
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    YOGESH
+              <div className="hero-reveal hero-copy space-y-6">
+                <h1 className="leading-[0.92] text-white">
+                  <span className="block text-xl font-semibold text-cyan-300 sm:text-2xl">
+                    I&apos;m
+                  </span>
+                  <span className="hero-name mt-1 block bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text px-[2px] pb-[6px] text-7xl font-black text-transparent sm:text-8xl lg:text-[7rem]">
+                    Yogesh
+                  </span>
+                  <span className="hero-role mt-4 flex max-w-3xl flex-wrap items-center gap-2 text-base font-semibold text-slate-200 sm:text-lg lg:flex-nowrap lg:text-[1.35rem]">
+                    <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                      <Code2 className="h-5 w-5 text-cyan-300" />
+                      Full Stack Developer
+                    </span>
+                    <span className="text-cyan-300 whitespace-nowrap">|</span>
+                    <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                      <Database className="h-5 w-5 text-cyan-300" />
+                      Data Enthusiast
+                    </span>
                   </span>
                 </h1>
 
-                {/* Subtitle */}
-                <div className="flex items-center gap-3 text-xl lg:text-2xl text-gray-300">
-                  <Code className="w-6 h-6 text-cyan-400" />
-                  <span>Full Stack Developer</span>
-                  <span className="text-cyan-400">|</span>
-                  <Database className="w-6 h-6 text-cyan-400" />
-                  <span>Data Science Enthusiast</span>
-                </div>
+                <p className="max-w-2xl text-lg leading-8 text-slate-300 lg:text-xl">
+                  I am growing through self-learning, college projects, and hands-on practice, with a strong
+                  interest in building clean web experiences and working with data to understand patterns,
+                  solve problems, and create better solutions. I enjoy learning by creating, improving, and
+                  turning each project into a step toward becoming a stronger developer and data-driven thinker.
+                </p>
               </div>
 
-              {/* Description */}
-              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-                I'm a passionate{" "}
-                <span className="text-cyan-400 font-semibold">
-                  B.Tech Computer Science student
-                </span>{" "}
-                with a minor in Data Science. Currently in my 3rd year, I'm
-                constantly striving to sharpen my skills through hands-on
-                projects, internships, and real-world experience.
-              </p>
-
-              {/* Buttons */}
-              <div className="grid grid-cols-2 gap-4 pt-6 max-w-md">
-
-                <Button className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-gray-900 py-4 text-lg font-bold rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300">
+              <div className="hero-reveal grid max-w-xl gap-4 sm:grid-cols-2">
+                <Button className="btn-primary rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 py-6 text-lg font-bold text-white shadow-[0_18px_40px_rgba(37,99,235,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_rgba(37,99,235,0.36)]">
                   <Link to="/projects" className="flex items-center justify-center gap-2">
-                    View Work
-                    <ArrowRight className="w-5 h-5" />
+                    See My Projects
+                    <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
 
                 <a href="/YogeshCV.pdf" download className="w-full">
                   <Button
                     variant="outline"
-                    className="w-full border-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 py-4 text-lg font-semibold rounded-full transition-all duration-300"
+                    className="btn-outline w-full rounded-full border border-white/15 bg-white/5 py-6 text-lg font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-cyan-300/10"
                   >
-                    <Download className="w-5 h-5 mr-2" />
-                    Resume
+                    <Download className="mr-2 h-5 w-5" />
+                    Download Resume
                   </Button>
                 </a>
-
               </div>
 
-              {/* Social Links */}
-              <div className="flex gap-4 pt-6">
+              <div className="hero-reveal flex flex-wrap gap-4">
+                <a
+                  href="https://github.com/Yogesh33s"
+                  className="social-icon flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:text-cyan-200"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/yogesh33/"
+                  className="social-icon flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:text-cyan-200"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href="mailto:yogeshranwa33@gmail.com"
+                  className="social-icon flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:text-cyan-200"
+                >
+                  <Mail className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            <div className="relative mx-auto flex w-full justify-center animate-scale-in lg:justify-self-end lg:translate-x-10 xl:translate-x-14">
+              <div className="absolute -top-8 left-4 h-28 w-28 rounded-full bg-cyan-400/15 blur-3xl"></div>
+              <div className="absolute -bottom-8 right-4 h-36 w-36 rounded-full bg-blue-500/20 blur-3xl"></div>
+
+              <div className="relative w-full max-w-md">
+                <div className="portfolio-orb absolute -inset-6 rounded-[2.5rem] opacity-80"></div>
+                <div className="absolute -inset-2 rounded-[2.4rem] bg-gradient-to-br from-cyan-300/15 via-transparent to-blue-500/15 blur-xl"></div>
+                <div className="profile-backplate absolute inset-4 rounded-[2.1rem]"></div>
+                <div className="profile-glint absolute left-6 top-10 h-3 w-3 rounded-full"></div>
+                <div className="profile-glint profile-glint-delayed absolute right-10 top-24 h-2.5 w-2.5 rounded-full"></div>
+                <div className="profile-glint absolute bottom-24 left-8 h-2.5 w-2.5 rounded-full"></div>
+                <div className="absolute right-2 top-6 rounded-full border border-cyan-300/20 bg-slate-950/70 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-md">
+                  Available for growth
+                </div>
+                <div className="profile-card profile-frame home-surface group relative overflow-hidden rounded-[2.3rem] border border-blue-400/20 bg-white/5 p-2 shadow-[0_28px_70px_rgba(8,47,73,0.42)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_95px_rgba(34,211,238,0.22)]">
+                  <img
+                    src="/M.jpg"
+                    alt="Yogesh Profile"
+                    className="profile-img h-[28rem] w-full rounded-[1.9rem] object-cover object-top transition-transform duration-700 group-hover:scale-[1.03] sm:h-[31rem]"
+                  />
+                  <div className="absolute inset-0 rounded-[1.9rem] border border-white/10"></div>
+                  <div className="absolute inset-x-6 top-0 h-20 rounded-full bg-white/10 blur-2xl"></div>
+                  <div className="absolute inset-0 rounded-[1.9rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_26%,rgba(3,7,18,0.28)_100%)]"></div>
+                  <div className="home-surface absolute bottom-4 left-4 right-4 rounded-[1.4rem] border border-white/10 bg-slate-950/60 p-4 backdrop-blur-md">
+                    <div className="mb-2 flex items-center gap-2 text-cyan-200">
+                      <MapPin className="h-4 w-4" />
+                      Punjab, India
+                    </div>
+                    <p className="text-sm leading-relaxed text-slate-300">
+                      Building with creativity, curiosity, and a focus on practical impact.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative px-6 py-10" data-reveal>
+          <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className="card reveal-block stat-card group rounded-[1.8rem] border border-white/10 bg-white/5 px-8 py-8 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30"
+                style={{ animationDelay: `${index * 120}ms` }}
+              >
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/15 text-cyan-300">
+                  <stat.icon className="h-6 w-6" />
+                </div>
+                <div className="mb-2 text-4xl font-black text-cyan-200">{stat.value}</div>
+                <div className="text-sm uppercase tracking-[0.25em] text-slate-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="relative px-6 pb-20 pt-8" data-reveal>
+          <div className="connect-panel reveal-block mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+              <div>
+                <p className="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-300">Connect With Me</p>
+                <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl">Let&apos;s build something meaningful.</h2>
+                <p className="max-w-xl text-lg leading-relaxed text-slate-300">
+                  Explore more on my profiles or reach out directly if you want to collaborate, connect, or talk about opportunities.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <a
+                  href="https://www.linkedin.com/in/yogesh33/"
+                  className="connect-card rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-5 text-slate-300 transition-all hover:-translate-y-1 hover:border-cyan-300/30 hover:text-cyan-200"
+                >
+                  <Linkedin className="mb-3 h-6 w-6 text-cyan-300" />
+                  <div className="text-lg font-semibold text-white">LinkedIn</div>
+                  <div className="mt-1 text-sm">linkedin.com/in/yogesh33</div>
+                </a>
 
                 <a
                   href="https://github.com/Yogesh33s"
-                  className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
+                  className="connect-card rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-5 text-slate-300 transition-all hover:-translate-y-1 hover:border-cyan-300/30 hover:text-cyan-200"
                 >
-                  <Github className="w-5 h-5" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/yogesh33/"
-                  className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
-                >
-                  <Linkedin className="w-5 h-5" />
+                  <Github className="mb-3 h-6 w-6 text-cyan-300" />
+                  <div className="text-lg font-semibold text-white">GitHub</div>
+                  <div className="mt-1 text-sm">github.com/Yogesh33s</div>
                 </a>
 
                 <a
                   href="mailto:yogeshranwa33@gmail.com"
-                  className="w-12 h-12 bg-gray-800/50 hover:bg-cyan-400/20 border border-gray-700 hover:border-cyan-400/50 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
+                  className="connect-card rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-5 text-slate-300 transition-all hover:-translate-y-1 hover:border-cyan-300/30 hover:text-cyan-200"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="mb-3 h-6 w-6 text-cyan-300" />
+                  <div className="text-lg font-semibold text-white">Email</div>
+                  <div className="mt-1 text-sm break-all">yogeshranwa33@gmail.com</div>
                 </a>
-
               </div>
             </div>
-
-            {/* Profile Image */}
-            <div className="relative lg:justify-self-end">
-
-              <div className="relative">
-                <div className="w-96 h-96 mx-auto rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 p-2 shadow-2xl shadow-cyan-400/20">
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-4 border-gray-700/50">
-
-                    <img
-                      src="/M.jpg"
-                      alt="Yogesh Profile"
-                      className="w-80 h-80 rounded-full object-cover"
-                    />
-
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl -z-10"></div>
-
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-16 px-6 bg-gray-800/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-
-            <div>
-              <div className="text-3xl font-bold text-cyan-400 mb-2">8+</div>
-              <div className="text-gray-300">CGPA</div>
-            </div>
-
-            <div>
-              <div className="text-3xl font-bold text-cyan-400 mb-2">7+</div>
-              <div className="text-gray-300">Projects Completed</div>
-            </div>
-
-            <div>
-              <div className="text-3xl font-bold text-cyan-400 mb-2">5+</div>
-              <div className="text-gray-300">Technologies</div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-
-          <h2 className="text-3xl font-bold text-white mb-8">
-            Let's Connect
-          </h2>
-
-          <div className="flex flex-wrap justify-center gap-6">
-
-            <a
-              href="mailto:yogeshranwa33@gmail.com"
-              className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all"
-            >
-              <Mail className="w-5 h-5" />
-              <span>yogeshranwa33@gmail.com</span>
-            </a>
-
-            <a
-              href="tel:7495086033"
-              className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all"
-            >
-              <Phone className="w-5 h-5" />
-              <span>7495086033</span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/yogesh33/"
-              className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-
-            <a
-              href="https://github.com/Yogesh33s"
-              className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full text-gray-300 hover:text-cyan-400 transition-all"
-            >
-              <Github className="w-5 h-5" />
-              <span>GitHub</span>
-            </a>
-
-          </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
     </div>
   );
 };

@@ -91,7 +91,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
+    <div className="theme-page min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       <Navigation />
 
       <div className="pt-32 pb-24 px-6">
