@@ -1,22 +1,87 @@
-import { Brain, Users, BookOpen } from "lucide-react";
-import { FaPython, FaJava, FaGitAlt, FaGithub } from "react-icons/fa";
-import { SiCplusplus, SiC, SiGooglecolab, SiPandas, SiNumpy } from "react-icons/si";
+import { Brain, Users, BookOpen, Sparkles } from "lucide-react";
+import { FaPython, FaJava, FaGitAlt, FaGithub, FaReact, FaNodeJs } from "react-icons/fa";
+import { SiCplusplus, SiC, SiGooglecolab, SiPandas, SiNumpy, SiMongodb } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import Navigation from "@/components/Navigation";
 
 const Skills = () => {
-
-  const skills = [
-    { name: "Java", level: 90, icon: FaJava },
-    { name: "Python", level: 85, icon: FaPython },
-    { name: "C++", level: 70, icon: SiCplusplus },
-    { name: "C", level: 65, icon: SiC },
-    { name: "Git", level: 80, icon: FaGitAlt },
-    { name: "GitHub", level: 80, icon: FaGithub },
-    { name: "VS Code", level: 90, icon: VscVscode },
-    { name: "Google Colab", level: 85, icon: SiGooglecolab },
-    { name: "NumPy", level: 70, icon: SiNumpy },
-    { name: "Pandas", level: 75, icon: SiPandas },
+  const skillSections = [
+    {
+      title: "Programming Languages",
+      accent: "text-cyan-300",
+      divider: "from-cyan-500/0 via-cyan-400/80 to-cyan-500/0",
+      cardClass:
+        "border-cyan-400/20 bg-cyan-500/10 hover:border-cyan-300 hover:shadow-[0_0_28px_rgba(34,211,238,0.25)]",
+      items: [
+        { name: "Java", icon: FaJava },
+        { name: "Python", icon: FaPython },
+        { name: "C++", icon: SiCplusplus },
+        { name: "C", icon: SiC },
+      ],
+    },
+    {
+      title: "Tools & Platforms",
+      accent: "text-fuchsia-300",
+      divider: "from-fuchsia-500/0 via-fuchsia-400/80 to-fuchsia-500/0",
+      cardClass:
+        "border-fuchsia-400/20 bg-fuchsia-500/10 hover:border-fuchsia-300 hover:shadow-[0_0_28px_rgba(217,70,239,0.25)]",
+      items: [
+        { name: "Git", icon: FaGitAlt },
+        { name: "GitHub", icon: FaGithub },
+        { name: "VS Code", icon: VscVscode },
+        { name: "Google Colab", icon: SiGooglecolab },
+      ],
+    },
+    {
+      title: "Libraries / Frameworks",
+      accent: "text-emerald-300",
+      divider: "from-emerald-500/0 via-emerald-400/80 to-emerald-500/0",
+      cardClass:
+        "border-emerald-400/20 bg-emerald-500/10 hover:border-emerald-300 hover:shadow-[0_0_28px_rgba(52,211,153,0.25)]",
+      items: [
+        { name: "NumPy", icon: SiNumpy },
+        { name: "Pandas", icon: SiPandas },
+        { name: "Matplotlib", icon: FaPython },
+        { name: "Seaborn", icon: FaPython },
+      ],
+    },
+    {
+      title: "Currently Learning",
+      accent: "text-amber-300",
+      divider: "from-amber-500/0 via-amber-400/80 to-amber-500/0",
+      cardClass:
+        "border-yellow-400 bg-gradient-to-br from-yellow-500/20 via-orange-500/15 to-emerald-500/20 shadow-lg shadow-yellow-500/20 hover:border-yellow-300 hover:shadow-[0_0_36px_rgba(250,204,21,0.35)]",
+      highlight: true,
+      items: [
+        { name: "React", icon: FaReact },
+        { name: "Node.js", icon: FaNodeJs },
+        { name: "MERN Stack", icon: SiMongodb },
+      ],
+    },
+    {
+      title: "Additional Competencies",
+      accent: "text-cyan-300",
+      divider: "from-cyan-500/0 via-cyan-400/80 to-cyan-500/0",
+      cardClass:
+        "border-cyan-400/20 bg-cyan-500/10 hover:border-cyan-300 hover:shadow-[0_0_28px_rgba(34,211,238,0.25)]",
+      items: [
+        {
+          name: "Problem Solving",
+          description: "DSA-based problem solving with a LeetCode-focused approach",
+          icon: Brain,
+        },
+        {
+          name: "Collaboration & Coordination",
+          description: "Team collaboration, event execution, and shared ownership",
+          icon: Users,
+        },
+        {
+          name: "Actively Learning Full-Stack Development",
+          description: "Building stronger frontend and backend fundamentals every week",
+          icon: BookOpen,
+        },
+      ],
+    },
   ];
 
   return (
@@ -33,121 +98,52 @@ const Skills = () => {
             </h1>
 
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Technologies and tools I use to build impactful solutions
+              A growing toolkit of languages, platforms, and frameworks I use while building toward full-stack development
             </p>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-            {skills.map((skill) => {
-              const Icon = skill.icon;
-
-              const radius = 32;
-              const circumference = 2 * Math.PI * radius;
-              const offset = circumference - (skill.level / 100) * circumference;
-
-              return (
-                <div
-                  key={skill.name}
-                  className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col items-center hover:scale-105 hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)] transition duration-300"
-                >
-
-                  {/* Progress Ring */}
-                  <div className="relative w-24 h-24 mb-4">
-
-                    <svg className="w-24 h-24 rotate-[-90deg]">
-
-                      <circle
-                        cx="48"
-                        cy="48"
-                        r={radius}
-                        stroke="#374151"
-                        strokeWidth="8"
-                        fill="transparent"
-                      />
-
-                      <circle
-                        cx="48"
-                        cy="48"
-                        r={radius}
-                        stroke="#22d3ee"
-                        strokeWidth="8"
-                        fill="transparent"
-                        strokeDasharray={circumference}
-                        strokeDashoffset={offset}
-                        strokeLinecap="round"
-                        className="transition-all duration-1000 group-hover:stroke-cyan-300"
-                      />
-
-                    </svg>
-
-                    {/* Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center text-3xl text-cyan-400">
-                      <Icon />
-                    </div>
-
+          <div className="space-y-12">
+            {skillSections.map((section) => (
+              <section key={section.title} className="space-y-6">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <h2 className={`text-2xl font-bold ${section.accent}`}>
+                      {section.title}
+                    </h2>
+                    {section.highlight && <Sparkles className="text-amber-300" size={22} />}
                   </div>
-
-                  <h3 className="text-white font-semibold text-lg">
-                    {skill.name}
-                  </h3>
-
-                  <p className="text-gray-400 text-sm">
-                    {skill.level}% proficiency
-                  </p>
-
+                  <div className={`h-px w-full bg-gradient-to-r ${section.divider}`} />
                 </div>
-              );
-            })}
 
-          </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                  {section.items.map((skill) => {
+                    const Icon = skill.icon;
 
-          {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent my-16"></div>
+                    return (
+                      <div
+                        key={skill.name}
+                        className={`group rounded-2xl border p-5 backdrop-blur-xl transition duration-300 hover:scale-105 hover:shadow-xl ${section.cardClass}`}
+                      >
+                        <div className="mb-4">
+                          <div className="w-fit rounded-xl bg-black/20 p-3 text-3xl text-white">
+                            <Icon />
+                          </div>
+                        </div>
 
-          {/* Additional Competencies */}
-          <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-10">
-
-            <h2 className="text-2xl font-bold text-white mb-10 flex items-center gap-3">
-              <Brain className="text-cyan-400" />
-              Additional Competencies
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-
-              <div className="p-6 rounded-xl bg-white/5 hover:bg-white/10 transition hover:scale-105">
-                <Brain className="mx-auto text-cyan-400 mb-4" size={28}/>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Problem Solving
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  Analytical thinking and creative solutions
-                </p>
-              </div>
-
-              <div className="p-6 rounded-xl bg-white/5 hover:bg-white/10 transition hover:scale-105">
-                <Users className="mx-auto text-cyan-400 mb-4" size={28}/>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Team Leadership
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  Event management and team coordination
-                </p>
-              </div>
-
-              <div className="p-6 rounded-xl bg-white/5 hover:bg-white/10 transition hover:scale-105">
-                <BookOpen className="mx-auto text-cyan-400 mb-4" size={28}/>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Continuous Learning
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  Always staying updated with latest technologies
-                </p>
-              </div>
-
-            </div>
-
+                        <h3 className="text-lg font-semibold text-white">
+                          {skill.name}
+                        </h3>
+                        {skill.description && (
+                          <p className="mt-2 text-sm text-gray-400">
+                            {skill.description}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
           </div>
 
         </div>
