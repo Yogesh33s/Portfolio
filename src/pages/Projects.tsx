@@ -9,12 +9,8 @@ import {
   BarChart3,
   Utensils,
   Sparkles,
-  CheckCircle2,
-  Clock3,
-  GitBranch,
-  FolderGit2,
 } from "lucide-react";
-import { FaBootstrap, FaCss3Alt, FaFlask, FaHtml5, FaJs, FaPython, FaReact } from "react-icons/fa";
+import { FaCss3Alt, FaFlask, FaHtml5, FaJs, FaPython, FaReact } from "react-icons/fa";
 import { SiPandas } from "react-icons/si";
 import Navigation from "@/components/Navigation";
 
@@ -23,10 +19,8 @@ const techIcons: Record<string, ComponentType<{ className?: string }>> = {
   Flask: FaFlask,
   "Oracle XE 21c": Database,
   "PL/SQL": Database,
-  ReportLab: Code,
   HTML: FaHtml5,
   CSS: FaCss3Alt,
-  Bootstrap: FaBootstrap,
   JavaScript: FaJs,
   Pandas: SiPandas,
   Matplotlib: BarChart3,
@@ -67,41 +61,47 @@ const Projects = () => {
         "Centralized student record management using Oracle XE 21c",
         "Connected Flask routes, templates, and database workflows into one system",
       ],
-      tech: ["Python", "Flask", "Oracle XE 21c", "PL/SQL", "ReportLab", "HTML", "Bootstrap"],
+      tech: ["Python", "Flask", "Oracle XE 21c", "PL/SQL", "HTML"],
       icon: Database,
       preview: "dashboard" as const,
+      screenshots: {
+        main: "/cer1(1).png",
+      },
       github: "https://github.com/Yogesh33s/Certificate-System",
       live: "https://certificate-system.vercel.app/",
     },
     {
       title: "Crop Recommendation System",
       category: "Machine Learning",
-      status: "Completed" as const,
+      status: "Live" as const,
       featured: true,
       description:
-        "Designed an ML-based crop recommendation workflow focused on helping users map environmental inputs to more suitable crop suggestions.",
+        "Built a machine learning-based crop recommendation system that predicts the most suitable crop using environmental factors such as NPK values, temperature, humidity, pH, and rainfall.",
       highlights: [
-        "Translated dataset-driven inputs into practical crop suggestions",
-        "Explored feature relationships to improve decision clarity",
-        "Strengthened end-to-end ML workflow understanding from preprocessing to prediction",
+        "Preprocessed the dataset using median missing-value filling, outlier trimming, and StandardScaler.",
+        "Trained and compared Decision Tree, Random Forest, Gradient Boosting, and SVM models for crop prediction.",
+        "Data source: Kaggle Crop Prediction dataset.",
       ],
-      tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
+      tech: ["Python", "Pandas", "NumPy", "Scikit-learn"],
       icon: BarChart3,
       preview: "analytics" as const,
-      github: "https://github.com/Yogesh33s/python-Data-visualization",
-      linkedin:
-        "https://www.linkedin.com/posts/yogesh33_python-dataanalysis-eda-activity-7317387150524665859-Z4dS",
+      screenshots: {
+        main: "/placeholder.svg",
+      },
+      github: "https://github.com/Yogesh33s/crop-predection",
+      live: "https://crop-predection.vercel.app/",
     },
     {
       title: "Ecommerce Website",
       category: "Web Development",
       status: "Live" as const,
+      featured: true,
       description:
-        "Built a responsive e-commerce platform with dynamic product listing and an interactive shopping interface that improves browsing and product discovery.",
+        "Built a responsive e-commerce website with product listings, category-based browsing, and a streamlined shopping flow for faster product discovery.",
       highlights: [
-        "Created a cleaner shopping flow with responsive product sections",
-        "Improved navigation across categories and featured products",
-        "Focused on UI polish and device-friendly layout behavior",
+        "Implemented responsive product grids and reusable UI sections for desktop and mobile layouts.",
+        "Built category-wise product navigation and featured product sections to improve discoverability.",
+        "Deployed the project on GitHub Pages with optimized static assets for fast page load.",
       ],
       tech: ["HTML", "CSS", "JavaScript"],
       icon: Globe,
@@ -123,6 +123,9 @@ const Projects = () => {
       tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
       icon: BarChart3,
       preview: "analytics" as const,
+      screenshots: {
+        main: "/pythondata.png",
+      },
       github: "https://github.com/Yogesh33s/python-Data-visualization",
       linkedin:
         "https://www.linkedin.com/posts/yogesh33_python-datavisualization-learningwithcode-activity-7334129335458562048-ranG",
@@ -141,7 +144,10 @@ const Projects = () => {
       tech: ["JavaScript", "HTML Canvas", "CSS"],
       icon: Code,
       preview: "algorithm" as const,
-      github: "https://github.com/Yogesh33s/bubble-sort-visualization",
+      screenshots: {
+        main: "/bubblesort.png",
+      },
+      github: "https://github.com/Yogesh33s/BubbleSort-Visualization",
       linkedin:
         "https://www.linkedin.com/posts/yogesh33_python-datavisualization-learningwithcode-activity-7334129335458562048-ranG",
     },
@@ -210,12 +216,12 @@ const Projects = () => {
               {featuredProjects.map((project) => (
                 <article
                   key={project.title}
-                  className="flex flex-col md:flex-row gap-6 rounded-3xl border border-white/10 bg-slate-900/80 p-6 backdrop-blur-xl transition duration-300 hover:scale-[1.02] hover:border-cyan-400/40"
+                  className="group flex flex-col md:flex-row gap-6 rounded-3xl border border-white/10 bg-slate-900/80 p-6 backdrop-blur-xl transition duration-300 hover:scale-[1.02] hover:border-cyan-400/40"
                 >
                   <div className="md:w-1/3 w-full">
-                    <div className={`relative h-full min-h-[240px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${previewStyles[project.preview]} p-6`}>
+                    <div className={`relative h-full min-h-[240px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${previewStyles[project.preview]} ${project.screenshots ? "p-3" : "p-6"}`}>
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_45%)]" />
-                      <div className="relative flex h-full flex-col justify-between">
+                      <div className={`relative flex h-full flex-col ${project.screenshots ? "gap-3" : "justify-between"}`}>
                         <div className="flex items-center justify-between">
                           <div className="rounded-xl bg-black/25 p-3">
                             <project.icon className="h-8 w-8 text-white" />
@@ -225,16 +231,68 @@ const Projects = () => {
                           </span>
                         </div>
 
-                        <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                          <div className="mb-3 flex items-center gap-2 text-white/90">
-                            <CheckCircle2 className="h-4 w-4 text-cyan-300" />
-                            <span className="text-sm">Project Preview</span>
-                          </div>
-                          <div className="grid grid-cols-3 gap-3">
-                            <div className="h-16 rounded-xl bg-white/10" />
-                            <div className="h-16 rounded-xl bg-white/5" />
-                            <div className="h-16 rounded-xl bg-white/10" />
-                          </div>
+                        <div className={`rounded-2xl border border-white/10 bg-black/30 ${project.screenshots ? "p-0 mt-3" : "px-4 pb-4 pt-6"}`}>
+                          {project.live ? (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="project-image block rounded-[18px] p-1.5 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,255,200,0.1)]"
+                              aria-label={`Open ${project.title} live project`}
+                            >
+                              <div className="browser-frame relative overflow-hidden rounded-2xl pt-6">
+                                <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-3 border-b border-white/10 bg-slate-900/95 px-3">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                                  </div>
+                                  <div className="h-3 w-24 rounded-full bg-white/10" />
+                                </div>
+                                <iframe
+                                  src={project.live}
+                                  title={`${project.title} live preview`}
+                                  className="pointer-events-none absolute left-0 top-6 z-10 h-[768px] w-[1366px] origin-top-left scale-[0.3] rounded-b-2xl border-0 transition-transform duration-500 ease-out group-hover:scale-[0.31]"
+                                  loading="lazy"
+                                  referrerPolicy="no-referrer-when-downgrade"
+                                />
+                                <div className="h-[254px] w-full rounded-b-2xl" />
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                              </div>
+                            </a>
+                          ) : project.screenshots ? (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="project-image block rounded-[18px] p-1.5 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,255,200,0.1)]"
+                              aria-label={`Open ${project.title} project`}
+                            >
+                              <div className="browser-frame relative overflow-hidden rounded-2xl bg-slate-900 pt-6">
+                                <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-3 border-b border-white/10 bg-slate-900/95 px-3">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                                  </div>
+                                  <div className="h-3 w-24 rounded-full bg-white/10" />
+                                </div>
+                                <img
+                                  src={project.screenshots.main}
+                                  alt={`${project.title} main screen`}
+                                  className="h-[254px] w-full rounded-b-2xl object-cover object-[50%_16%] opacity-100 transition-transform duration-500 ease-out group-hover:scale-105"
+                                  loading="lazy"
+                                />
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                              </div>
+                            </a>
+                          ) : (
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="h-16 rounded-xl bg-white/10" />
+                              <div className="h-16 rounded-xl bg-white/5" />
+                              <div className="h-16 rounded-xl bg-white/10" />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -335,13 +393,82 @@ const Projects = () => {
                           </span>
                         </div>
 
-                        <div className="space-y-3">
-                          <div className="h-3 w-3/4 rounded-full bg-white/20" />
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="h-20 rounded-xl bg-white/10" />
-                            <div className="h-20 rounded-xl bg-white/5" />
-                          </div>
-                        </div>
+                        {project.live ? (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-image block rounded-[18px] p-1.5 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,255,200,0.1)]"
+                            aria-label={`Open ${project.title} live project`}
+                          >
+                            <div className="browser-frame relative overflow-hidden rounded-2xl pt-6">
+                              <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-3 border-b border-white/10 bg-slate-900/95 px-3">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                                </div>
+                                <div className="h-3 w-24 rounded-full bg-white/10" />
+                              </div>
+                              <iframe
+                                src={project.live}
+                                title={`${project.title} live preview`}
+                                className="pointer-events-none absolute left-0 top-6 z-10 h-[768px] w-[1366px] origin-top-left scale-[0.3] rounded-b-2xl border-0 transition-transform duration-500 ease-out group-hover:scale-[0.31]"
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                              />
+                              <div className="h-[254px] w-full rounded-b-2xl" />
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                            </div>
+                          </a>
+                        ) : project.screenshots ? (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-image block rounded-[18px] p-1.5 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,255,200,0.1)]"
+                            aria-label={`Open ${project.title} repository`}
+                          >
+                            <div className="browser-frame relative overflow-hidden rounded-2xl bg-slate-900 pt-6">
+                              <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-3 border-b border-white/10 bg-slate-900/95 px-3">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                                </div>
+                                <div className="h-3 w-24 rounded-full bg-white/10" />
+                              </div>
+                              <img
+                                src={project.screenshots.main}
+                                alt={`${project.title} preview`}
+                                className="h-[254px] w-full rounded-b-2xl object-cover object-top transition-transform duration-500 ease-out hover:scale-105"
+                                loading="lazy"
+                              />
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                            </div>
+                          </a>
+                        ) : (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-image block rounded-[18px] p-1.5 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,255,200,0.1)]"
+                            aria-label={`Open ${project.title} project`}
+                          >
+                            <div className="browser-frame relative overflow-hidden rounded-2xl bg-slate-900 pt-6">
+                              <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-3 border-b border-white/10 bg-slate-900/95 px-3">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                                  <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                                </div>
+                                <div className="h-3 w-24 rounded-full bg-white/10" />
+                              </div>
+                              <div className="h-[254px] w-full rounded-b-2xl bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+                            </div>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -415,27 +542,7 @@ const Projects = () => {
           </section>
 
           <section className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-lg">
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-cyan-400/20 bg-cyan-500/10 p-6">
-                <GitBranch className="mb-3 h-8 w-8 text-cyan-300" />
-                <div className="text-3xl font-bold text-white">100+</div>
-                <div className="text-sm text-gray-400">Commits across portfolio work</div>
-              </div>
-
-              <div className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-500/10 p-6">
-                <FolderGit2 className="mb-3 h-8 w-8 text-fuchsia-300" />
-                <div className="text-3xl font-bold text-white">10+</div>
-                <div className="text-sm text-gray-400">Projects and experiments</div>
-              </div>
-
-              <div className="rounded-2xl border border-amber-400/20 bg-amber-500/10 p-6">
-                <Clock3 className="mb-3 h-8 w-8 text-amber-300" />
-                <div className="text-3xl font-bold text-white">Active</div>
-                <div className="text-sm text-gray-400">Learning full-stack development consistently</div>
-              </div>
-            </div>
-
-            <div className="mt-10 text-center">
+            <div className="text-center">
               <h2 className="text-2xl font-bold text-white mb-4">Explore More Projects</h2>
               <p className="text-gray-400 mb-6">
                 Visit my GitHub profile to explore more development work, experiments, and ongoing learning projects.
