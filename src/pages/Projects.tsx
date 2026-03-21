@@ -71,7 +71,7 @@ const Projects = () => {
       icon: Database,
       preview: "dashboard" as const,
       github: "https://github.com/Yogesh33s/Certificate-System",
-      live: "https://certificate-system-jper.onrender.com/",
+      live: "https://certificate-system.vercel.app/",
     },
     {
       title: "Crop Recommendation System",
