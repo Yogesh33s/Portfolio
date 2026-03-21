@@ -71,12 +71,12 @@ const Skills = () => {
           icon: Brain,
         },
         {
-          name: "Collaboration & Coordination",
+          name: "Collaboration & Teamwork",
           description: "Team collaboration, event execution, and shared ownership",
           icon: Users,
         },
         {
-          name: "Actively Learning Full-Stack Development",
+          name: "Full-Stack Learning",
           description: "Building stronger frontend and backend fundamentals every week",
           icon: BookOpen,
         },
@@ -115,14 +115,20 @@ const Skills = () => {
                   <div className={`h-px w-full bg-gradient-to-r ${section.divider}`} />
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div
+                  className={
+                    section.title === "Additional Competencies"
+                      ? "grid grid-cols-1 md:grid-cols-3 gap-6"
+                      : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+                  }
+                >
                   {section.items.map((skill) => {
                     const Icon = skill.icon;
 
                     return (
                       <div
                         key={skill.name}
-                        className={`group rounded-2xl border p-5 backdrop-blur-xl transition duration-300 hover:scale-105 hover:shadow-xl ${section.cardClass}`}
+                        className={`group rounded-2xl border p-5 backdrop-blur-xl transition duration-300 hover:scale-105 hover:shadow-xl ${section.cardClass} ${section.title === "Additional Competencies" ? "min-h-[190px]" : ""}`}
                       >
                         <div className="mb-4">
                           <div className="w-fit rounded-xl bg-black/20 p-3 text-3xl text-white">
@@ -130,7 +136,7 @@ const Skills = () => {
                           </div>
                         </div>
 
-                        <h3 className="text-lg font-semibold text-white">
+                        <h3 className={`font-semibold text-white ${section.title === "Additional Competencies" ? "text-base whitespace-nowrap" : "text-lg"}`}>
                           {skill.name}
                         </h3>
                         {skill.description && (
