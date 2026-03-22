@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import Certificates from "./pages/Certificates";
 import CertificateView from "./pages/CertificateView";
 import Contact from "./pages/Contact";
+import CodingProfiles from "./pages/CodingProfiles";
 import { ThemeProvider } from "./components/ThemeContext";
 import { PortfolioContentProvider } from "./contexts/PortfolioContentContext";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/skills" element={<Skills />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/certificates" element={<Certificates />} />
+                <Route path="/coding-profiles" element={<CodingProfiles />} />
                 <Route path="/certificate" element={<CertificateView />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route
