@@ -5,6 +5,52 @@ import type { ContentSectionKey, PortfolioContent } from "@/types/portfolio";
 
 const STORAGE_KEY = "portfolio-content-v1";
 
+const mergeById = <T extends { id: string }>(defaults: T[], saved: T[] = []) => {
+  const savedMap = new Map(saved.map((item) => [item.id, item]));
+  const mergedDefaults = defaults.map((item) => savedMap.get(item.id) || item);
+  const extraSaved = saved.filter((item) => !defaults.some((defaultItem) => defaultItem.id === item.id));
+  return [...mergedDefaults, ...extraSaved];
+};
+
+const mergeWithDefaults = (saved: Partial<PortfolioContent>): PortfolioContent => ({
+  about: {
+    ...defaultPortfolioContent.about,
+    ...saved.about,
+    cards: mergeById(defaultPortfolioContent.about.cards, saved.about?.cards),
+  },
+  skills: {
+    ...defaultPortfolioContent.skills,
+    ...saved.skills,
+    sections: mergeById(defaultPortfolioContent.skills.sections, saved.skills?.sections).map((section) => {
+      const defaultSection = defaultPortfolioContent.skills.sections.find((item) => item.id === section.id);
+      return defaultSection
+        ? {
+            ...defaultSection,
+            ...section,
+            items: mergeById(defaultSection.items, section.items),
+          }
+        : section;
+    }),
+  },
+  projects: {
+    ...defaultPortfolioContent.projects,
+    ...saved.projects,
+    items: mergeById(defaultPortfolioContent.projects.items, saved.projects?.items),
+  },
+  certificates: {
+    ...defaultPortfolioContent.certificates,
+    ...saved.certificates,
+    items: mergeById(defaultPortfolioContent.certificates.items, saved.certificates?.items),
+  },
+  education: {
+    ...defaultPortfolioContent.education,
+    ...saved.education,
+    educationEntries: mergeById(defaultPortfolioContent.education.educationEntries, saved.education?.educationEntries),
+    trainingEntries: mergeById(defaultPortfolioContent.education.trainingEntries, saved.education?.trainingEntries),
+    experienceEntries: mergeById(defaultPortfolioContent.education.experienceEntries, saved.education?.experienceEntries),
+  },
+});
+
 type PortfolioContentContextValue = {
   content: PortfolioContent;
   setSectionContent: <K extends ContentSectionKey>(section: K, value: PortfolioContent[K]) => void;
@@ -20,7 +66,10 @@ export const PortfolioContentProvider = ({ children }: { children: ReactNode }) 
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        setContent(JSON.parse(saved));
+        const parsed = JSON.parse(saved) as Partial<PortfolioContent>;
+        const merged = mergeWithDefaults(parsed);
+        setContent(merged);
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
       } catch {
         window.localStorage.removeItem(STORAGE_KEY);
       }
