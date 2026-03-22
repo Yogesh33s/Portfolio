@@ -2,48 +2,16 @@ import { ArrowUpRight, Award, Code2, ExternalLink, Star, Trophy } from "lucide-r
 
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
+import { usePortfolioContent } from "@/contexts/PortfolioContentContext";
 
-const profiles = [
-  {
-    name: "HackerRank",
-    handle: "@yogeshranwa33",
-    url: "https://www.hackerrank.com/profile/yogeshranwa33",
-    icon: Trophy,
-    accent:
-      "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(16,185,129,0.18),rgba(255,255,255,0.05))] hover:shadow-emerald-500/20",
-    badge: "Problem Solving",
-    description:
-      "Track my HackerRank profile for coding challenges, badges, and hands-on practice across core programming topics.",
-    badgeRatings: [
-      { title: "Problem Solving", stars: 3 },
-      { title: "C++", stars: 3 },
-      { title: "Java", stars: 4 },
-    ],
-    certificates: [],
-    stats: [],
-  },
-  {
-    name: "LeetCode",
-    handle: "@9v26obPPgG",
-    url: "https://leetcode.com/u/9v26obPPgG/",
-    icon: Code2,
-    accent:
-      "border-amber-400/20 bg-[linear-gradient(135deg,rgba(245,158,11,0.18),rgba(255,255,255,0.05))] hover:shadow-amber-500/20",
-    badge: "DSA Practice",
-    description:
-      "I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.",
-    badgeRatings: [],
-    certificates: [],
-    stats: [
-      { label: "Problems Solved", value: "83", tone: "text-white" },
-      { label: "Easy", value: "60", tone: "text-emerald-300" },
-      { label: "Medium", value: "20", tone: "text-yellow-300" },
-      { label: "Hard", value: "3", tone: "text-rose-300" },
-    ],
-  },
-];
+const iconMap = {
+  Code2,
+  Trophy,
+} as const;
 
 const CodingProfiles = () => {
+  const { content } = usePortfolioContent();
+
   return (
     <div className="theme-page min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_20%),linear-gradient(160deg,_#020617_0%,_#0f172a_55%,_#111827_100%)]">
       <Navigation />
@@ -62,20 +30,20 @@ const CodingProfiles = () => {
               Coding Profiles
             </div>
             <h1 className="mx-auto max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl">
-              Problem Solving & DSA
+              {content.coding.heroTitle}
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-              I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.
+              {content.coding.heroSubtitle}
             </p>
           </section>
 
           <section className="grid gap-8 md:grid-cols-2" data-reveal>
-            {profiles.map((profile) => {
-              const Icon = profile.icon;
+            {content.coding.profiles.map((profile) => {
+              const Icon = iconMap[profile.iconKey as keyof typeof iconMap] ?? Trophy;
 
               return (
                 <article
-                  key={profile.name}
+                  key={profile.id}
                   className={`rounded-[2rem] border p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${profile.accent}`}
                 >
                   <div className="mb-6 flex items-start justify-between gap-4">
@@ -95,7 +63,7 @@ const CodingProfiles = () => {
                     <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
                       {profile.stats.map((item) => (
                         <div
-                          key={item.label}
+                          key={item.id}
                           className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
                         >
                           <div className={`text-2xl font-black ${item.tone}`}>{item.value}</div>
@@ -115,14 +83,14 @@ const CodingProfiles = () => {
                       <div className="mt-3 grid grid-cols-3 gap-3">
                         {profile.badgeRatings.map((item) => (
                           <div
-                            key={item.title}
+                            key={item.id}
                             className="rounded-2xl border border-white/10 bg-slate-950/60 px-3 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
                           >
                             <div className="text-sm font-semibold text-white">{item.title}</div>
                             <div className="mt-2 flex items-center gap-1">
                               {Array.from({ length: item.stars }).map((_, index) => (
                                 <span
-                                  key={`${item.title}-filled-${index}`}
+                                  key={`${item.id}-filled-${index}`}
                                   className="inline-flex items-center justify-center text-yellow-300"
                                 >
                                   <Star className="h-3 w-3 fill-current" />
@@ -130,7 +98,7 @@ const CodingProfiles = () => {
                               ))}
                               {Array.from({ length: 5 - item.stars }).map((_, index) => (
                                 <span
-                                  key={`${item.title}-empty-${index}`}
+                                  key={`${item.id}-empty-${index}`}
                                   className="inline-flex items-center justify-center text-slate-500"
                                 >
                                   <Star className="h-3 w-3" />
@@ -146,32 +114,6 @@ const CodingProfiles = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
-                  )}
-
-                  {profile.certificates.length > 0 && (
-                    <div className="mt-6">
-                      <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-white/75">
-                        Certificates
-                      </h3>
-                      <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-300">
-                        {profile.certificates.map((item) => (
-                          <li
-                            key={item.title}
-                            className="rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.08),rgba(255,255,255,0.03))] px-4 py-3"
-                          >
-                            <span className="font-medium text-cyan-200">Certificate:</span>{" "}
-                            <a
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-medium text-white underline decoration-cyan-300/60 underline-offset-4 transition-colors hover:text-cyan-200"
-                            >
-                              {item.title}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   )}
 

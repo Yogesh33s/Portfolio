@@ -65,6 +65,38 @@ export type CertificatesContent = {
   items: CertificateItem[];
 };
 
+export type CodingStat = {
+  id: string;
+  label: string;
+  value: string;
+  tone: string;
+};
+
+export type CodingBadgeRating = {
+  id: string;
+  title: string;
+  stars: number;
+};
+
+export type CodingProfile = {
+  id: string;
+  name: string;
+  handle: string;
+  url: string;
+  iconKey: string;
+  accent: string;
+  badge: string;
+  description: string;
+  badgeRatings: CodingBadgeRating[];
+  stats: CodingStat[];
+};
+
+export type CodingContent = {
+  heroTitle: string;
+  heroSubtitle: string;
+  profiles: CodingProfile[];
+};
+
 export type EducationEntry = {
   id: string;
   label: string;
@@ -111,6 +143,7 @@ export type PortfolioContent = {
   skills: SkillsContent;
   projects: ProjectsContent;
   certificates: CertificatesContent;
+  coding: CodingContent;
   education: EducationContent;
 };
 
@@ -119,4 +152,5 @@ export type ContentSectionKey =
   | "skills"
   | "projects"
   | "certificates"
+  | "coding"
   | "education";

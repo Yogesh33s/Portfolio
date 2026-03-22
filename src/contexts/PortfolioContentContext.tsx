@@ -42,6 +42,21 @@ const mergeWithDefaults = (saved: Partial<PortfolioContent>): PortfolioContent =
     ...saved.certificates,
     items: mergeById(defaultPortfolioContent.certificates.items, saved.certificates?.items),
   },
+  coding: {
+    ...defaultPortfolioContent.coding,
+    ...saved.coding,
+    profiles: mergeById(defaultPortfolioContent.coding.profiles, saved.coding?.profiles).map((profile) => {
+      const defaultProfile = defaultPortfolioContent.coding.profiles.find((item) => item.id === profile.id);
+      return defaultProfile
+        ? {
+            ...defaultProfile,
+            ...profile,
+            badgeRatings: mergeById(defaultProfile.badgeRatings, profile.badgeRatings),
+            stats: mergeById(defaultProfile.stats, profile.stats),
+          }
+        : profile;
+    }),
+  },
   education: {
     ...defaultPortfolioContent.education,
     ...saved.education,

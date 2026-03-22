@@ -55,7 +55,7 @@ const AdminDashboard = () => {
           <section className="rounded-[2rem] border border-cyan-400/15 bg-white/5 p-8 backdrop-blur-md">
             <h1 className="text-4xl font-black">Hidden Portfolio Admin</h1>
             <p className="mt-3 max-w-3xl text-slate-300">
-              Add, remove, and update your About, Skills, Projects, Certificates, and Learning content from here.
+              Add, remove, and update your About, Skills, Projects, Certificates, Coding, and Learning content from here.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button onClick={() => { logout(); navigate("/"); }} variant="outline" className="border-white/10 bg-white/5 text-white">
@@ -74,6 +74,7 @@ const AdminDashboard = () => {
               <TabsTrigger value="skills">Skills</TabsTrigger>
               <TabsTrigger value="projects">Projects</TabsTrigger>
               <TabsTrigger value="certificates">Certificates</TabsTrigger>
+              <TabsTrigger value="coding">Coding</TabsTrigger>
               <TabsTrigger value="education">Learning</TabsTrigger>
               <TabsTrigger value="security">Security</TabsTrigger>
             </TabsList>
@@ -178,6 +179,80 @@ const AdminDashboard = () => {
               <Toolbar addLabel="Add Certificate" onAdd={() => setDraft((current) => ({ ...current, certificates: { ...current.certificates, items: [...current.certificates.items, { id: uid("cert"), title: "New Certificate", issuer: "Issuer", image: "/placeholder.svg", summary: "Summary" }] } }))} saveLabel="Save Certificates" onSave={() => saveSection("certificates")} />
             </TabsContent>
 
+            <TabsContent value="coding" className="space-y-4">
+              <div className={cardClass}>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Field label="Page Title" value={draft.coding.heroTitle} onChange={(value) => setDraft((current) => ({ ...current, coding: { ...current.coding, heroTitle: value } }))} />
+                  <FieldArea label="Intro" value={draft.coding.heroSubtitle} onChange={(value) => setDraft((current) => ({ ...current, coding: { ...current.coding, heroSubtitle: value } }))} />
+                </div>
+              </div>
+              {draft.coding.profiles.map((profile) => (
+                <EditorCard key={profile.id} title={profile.name} onDelete={() => setDraft((current) => ({ ...current, coding: { ...current.coding, profiles: current.coding.profiles.filter((item) => item.id !== profile.id) } }))}>
+                  <div className="grid gap-4 md:grid-cols-3">
+                    <Field label="Name" value={profile.name} onChange={(value) => updateCodingProfile(profile.id, { name: value })} />
+                    <Field label="Handle" value={profile.handle} onChange={(value) => updateCodingProfile(profile.id, { handle: value })} />
+                    <Field label="Profile URL" value={profile.url} onChange={(value) => updateCodingProfile(profile.id, { url: value })} />
+                    <Field label="Icon Key" value={profile.iconKey} onChange={(value) => updateCodingProfile(profile.id, { iconKey: value })} />
+                    <Field label="Badge" value={profile.badge} onChange={(value) => updateCodingProfile(profile.id, { badge: value })} />
+                    <Field label="Accent Classes" value={profile.accent} onChange={(value) => updateCodingProfile(profile.id, { accent: value })} />
+                  </div>
+                  <div className="mt-4">
+                    <FieldArea label="Description" value={profile.description} onChange={(value) => updateCodingProfile(profile.id, { description: value })} />
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+                    <div className="mb-3 flex items-center justify-between">
+                      <h4 className="font-medium">Badge Ratings</h4>
+                      <Button onClick={() => updateCodingProfile(profile.id, { badgeRatings: [...profile.badgeRatings, { id: uid("coding-badge"), title: "New Badge", stars: 3 }] })} variant="outline" className="border-white/10 bg-white/5 text-white">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Add Badge
+                      </Button>
+                    </div>
+                    <div className="space-y-3">
+                      {profile.badgeRatings.map((item) => (
+                        <div key={item.id} className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
+                          <div className="mb-3 flex items-center justify-between">
+                            <h5 className="font-medium">{item.title}</h5>
+                            <DeleteButton onClick={() => updateCodingProfile(profile.id, { badgeRatings: profile.badgeRatings.filter((badge) => badge.id !== item.id) })} />
+                          </div>
+                          <div className="grid gap-4 md:grid-cols-2">
+                            <Field label="Title" value={item.title} onChange={(value) => updateCodingBadge(profile.id, item.id, { title: value })} />
+                            <Field label="Stars (0-5)" value={String(item.stars)} onChange={(value) => updateCodingBadge(profile.id, item.id, { stars: clampStars(value) })} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+                    <div className="mb-3 flex items-center justify-between">
+                      <h4 className="font-medium">Stats</h4>
+                      <Button onClick={() => updateCodingProfile(profile.id, { stats: [...profile.stats, { id: uid("coding-stat"), label: "New Stat", value: "0", tone: "text-white" }] })} variant="outline" className="border-white/10 bg-white/5 text-white">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Add Stat
+                      </Button>
+                    </div>
+                    <div className="space-y-3">
+                      {profile.stats.map((item) => (
+                        <div key={item.id} className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
+                          <div className="mb-3 flex items-center justify-between">
+                            <h5 className="font-medium">{item.label}</h5>
+                            <DeleteButton onClick={() => updateCodingProfile(profile.id, { stats: profile.stats.filter((stat) => stat.id !== item.id) })} />
+                          </div>
+                          <div className="grid gap-4 md:grid-cols-3">
+                            <Field label="Label" value={item.label} onChange={(value) => updateCodingStat(profile.id, item.id, { label: value })} />
+                            <Field label="Value" value={item.value} onChange={(value) => updateCodingStat(profile.id, item.id, { value: value })} />
+                            <Field label="Tone Class" value={item.tone} onChange={(value) => updateCodingStat(profile.id, item.id, { tone: value })} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </EditorCard>
+              ))}
+              <Toolbar addLabel="Add Coding Profile" onAdd={() => setDraft((current) => ({ ...current, coding: { ...current.coding, profiles: [...current.coding.profiles, emptyCodingProfile()] } }))} saveLabel="Save Coding" onSave={() => saveSection("coding")} />
+            </TabsContent>
+
             <TabsContent value="education" className="space-y-4">
               <div className={cardClass}>
                 <Field label="Page Title" value={draft.education.heroTitle} onChange={(value) => setDraft((current) => ({ ...current, education: { ...current.education, heroTitle: value } }))} />
@@ -269,6 +344,41 @@ const AdminDashboard = () => {
       education: { ...current.education, educationEntries: current.education.educationEntries.map((item) => (item.id === id ? { ...item, ...patch } : item)) },
     }));
   }
+
+  function updateCodingProfile(id: string, patch: Partial<PortfolioContent["coding"]["profiles"][number]>) {
+    setDraft((current) => ({
+      ...current,
+      coding: { ...current.coding, profiles: current.coding.profiles.map((item) => (item.id === id ? { ...item, ...patch } : item)) },
+    }));
+  }
+
+  function updateCodingBadge(profileId: string, badgeId: string, patch: Partial<PortfolioContent["coding"]["profiles"][number]["badgeRatings"][number]>) {
+    setDraft((current) => ({
+      ...current,
+      coding: {
+        ...current.coding,
+        profiles: current.coding.profiles.map((profile) =>
+          profile.id === profileId
+            ? { ...profile, badgeRatings: profile.badgeRatings.map((item) => (item.id === badgeId ? { ...item, ...patch } : item)) }
+            : profile
+        ),
+      },
+    }));
+  }
+
+  function updateCodingStat(profileId: string, statId: string, patch: Partial<PortfolioContent["coding"]["profiles"][number]["stats"][number]>) {
+    setDraft((current) => ({
+      ...current,
+      coding: {
+        ...current.coding,
+        profiles: current.coding.profiles.map((profile) =>
+          profile.id === profileId
+            ? { ...profile, stats: profile.stats.map((item) => (item.id === statId ? { ...item, ...patch } : item)) }
+            : profile
+        ),
+      },
+    }));
+  }
 };
 
 const emptyProject = (): ProjectItem => ({
@@ -287,6 +397,25 @@ const emptyProject = (): ProjectItem => ({
   liveUrl: "",
   linkedinUrl: "",
 });
+
+const emptyCodingProfile = (): PortfolioContent["coding"]["profiles"][number] => ({
+  id: uid("coding"),
+  name: "New Profile",
+  handle: "@username",
+  url: "https://",
+  iconKey: "Trophy",
+  accent: "border-cyan-400/20 bg-[linear-gradient(135deg,rgba(34,211,238,0.18),rgba(255,255,255,0.05))] hover:shadow-cyan-500/20",
+  badge: "Coding",
+  description: "Describe this coding profile.",
+  badgeRatings: [],
+  stats: [],
+});
+
+const clampStars = (value: string) => {
+  const parsed = Number.parseInt(value, 10);
+  if (Number.isNaN(parsed)) return 0;
+  return Math.max(0, Math.min(5, parsed));
+};
 
 const Field = ({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (value: string) => void; type?: string }) => (
   <label className="space-y-2 text-sm text-slate-300">

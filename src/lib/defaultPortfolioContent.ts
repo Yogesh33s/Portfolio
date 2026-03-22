@@ -248,9 +248,9 @@ export const defaultPortfolioContent: PortfolioContent = {
       { id: "cert-cloud", title: "Cloud Computing", issuer: "NPTEL - IIT Kharagpur", image: "/NPTEL.png", summary: "Learned cloud service models, deployment models, and scalable architecture basics." },
       { id: "cert-plsql", title: "PL/SQL & Data Science Bootcamp", issuer: "Centre for Professional Enhancement - LPU", image: "/PL_SQL.png", summary: "Built SQL and PL/SQL foundations with data handling and analysis workflows." },
       { id: "cert-java", title: "Java Programming", issuer: "Lovely Professional University", image: "/Java.png", summary: "Covered Java fundamentals, OOP concepts, and practical coding exercises." },
-      { id: "cert-hackerrank-java-basic", title: "Java Basic", issuer: "HackerRank", image: "/Java basic.png", summary: "Validated core Java programming fundamentals through HackerRank's basic certification assessment." },
-      { id: "cert-hackerrank-problem-solving-basic", title: "Problem Solving Basic", issuer: "HackerRank", image: "/Problem solving basic.png", summary: "Showcased beginner-level problem-solving skills using core algorithms, logic, and data structure fundamentals." },
-      { id: "cert-hackerrank-problem-solving-intermediate", title: "Problem Solving Intermediate", issuer: "HackerRank", image: "/Problem Solving Intermidiate.png", summary: "Verified intermediate problem-solving ability across algorithmic thinking and practical coding challenges." },
+      { id: "cert-hackerrank-java-basic", title: "Java Basic", issuer: "HackerRank", image: "/Javabasic.png", summary: "Validated core Java programming fundamentals through HackerRank's basic certification assessment." },
+      { id: "cert-hackerrank-problem-solving-basic", title: "Problem Solving Basic", issuer: "HackerRank", image: "/Problemsolvingbasic.png", summary: "Showcased beginner-level problem-solving skills using core algorithms, logic, and data structure fundamentals." },
+      { id: "cert-hackerrank-problem-solving-intermediate", title: "Problem Solving Intermediate", issuer: "HackerRank", image: "/ProblemSolvingIntermidiate.png", summary: "Verified intermediate problem-solving ability across algorithmic thinking and practical coding challenges." },
       { id: "cert-hackathon", title: "Code-A-Hunt Hackathon", issuer: "CodingBlocks LPU", image: "/Code-a-hunt.png", summary: "Participated in a coding challenge focused on speed, logic, and team execution." },
       { id: "cert-dsa", title: "Data Structures and Algorithms", issuer: "Lovely Professional University", image: "/DSA.png", summary: "Strengthened problem-solving using core data structures and algorithmic thinking." },
       { id: "cert-oops", title: "Object Oriented Programming", issuer: "Lovely Professional University", image: "/OOPS.png", summary: "Applied OOP principles for modular design, abstraction, and code reusability." },
@@ -260,6 +260,50 @@ export const defaultPortfolioContent: PortfolioContent = {
       { id: "cert-tcp-ip", title: "TCP/IP and Advanced Topics", issuer: "University of Colorado - Coursera", image: "/TCP_IP.png", summary: "Studied TCP/IP internals, reliability mechanisms, and protocol-level design." },
       { id: "cert-digital-systems", title: "Digital Systems: Logic Gates to Processors", issuer: "Universitat Autonoma de Barcelona - Coursera", image: "/Logic gates.png", summary: "Covered digital logic from gates and circuits to processor architecture basics." },
       { id: "cert-skillcraft", title: "Data Science Internship", issuer: "SkillCraft Technology", image: "/Skillcraft.png", summary: "Worked on real-world data tasks involving preprocessing, analysis, and reporting." },
+    ],
+  },
+  coding: {
+    heroTitle: "Problem Solving & DSA",
+    heroSubtitle:
+      "I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.",
+    profiles: [
+      {
+        id: "coding-hackerrank",
+        name: "HackerRank",
+        handle: "@yogeshranwa33",
+        url: "https://www.hackerrank.com/profile/yogeshranwa33",
+        iconKey: "Trophy",
+        accent:
+          "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(16,185,129,0.18),rgba(255,255,255,0.05))] hover:shadow-emerald-500/20",
+        badge: "Problem Solving",
+        description:
+          "Track my HackerRank profile for coding challenges, badges, and hands-on practice across core programming topics.",
+        badgeRatings: [
+          { id: "coding-hackerrank-problem-solving", title: "Problem Solving", stars: 3 },
+          { id: "coding-hackerrank-cpp", title: "C++", stars: 3 },
+          { id: "coding-hackerrank-java", title: "Java", stars: 4 },
+        ],
+        stats: [],
+      },
+      {
+        id: "coding-leetcode",
+        name: "LeetCode",
+        handle: "@9v26obPPgG",
+        url: "https://leetcode.com/u/9v26obPPgG/",
+        iconKey: "Code2",
+        accent:
+          "border-amber-400/20 bg-[linear-gradient(135deg,rgba(245,158,11,0.18),rgba(255,255,255,0.05))] hover:shadow-amber-500/20",
+        badge: "DSA Practice",
+        description:
+          "I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.",
+        badgeRatings: [],
+        stats: [
+          { id: "coding-leetcode-solved", label: "Problems Solved", value: "83", tone: "text-white" },
+          { id: "coding-leetcode-easy", label: "Easy", value: "60", tone: "text-emerald-300" },
+          { id: "coding-leetcode-medium", label: "Medium", value: "20", tone: "text-yellow-300" },
+          { id: "coding-leetcode-hard", label: "Hard", value: "3", tone: "text-rose-300" },
+        ],
+      },
     ],
   },
   education: {
