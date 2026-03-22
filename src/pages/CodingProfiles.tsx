@@ -19,12 +19,8 @@ const profiles = [
       { title: "C++", stars: 3 },
       { title: "Java", stars: 4 },
     ],
-    certificates: [
-      "Java Basic",
-      "C++ Basic",
-      "Problem Solving Basic",
-      "Problem Solving Intermediate",
-    ],
+    certificates: [],
+    stats: [],
   },
   {
     name: "LeetCode",
@@ -35,9 +31,15 @@ const profiles = [
       "border-amber-400/20 bg-[linear-gradient(135deg,rgba(245,158,11,0.18),rgba(255,255,255,0.05))] hover:shadow-amber-500/20",
     badge: "DSA Practice",
     description:
-      "Visit my LeetCode profile to see my algorithm practice journey and problem-solving progress.",
+      "I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.",
     badgeRatings: [],
     certificates: [],
+    stats: [
+      { label: "Problems Solved", value: "83", tone: "text-white" },
+      { label: "Easy", value: "60", tone: "text-emerald-300" },
+      { label: "Medium", value: "20", tone: "text-yellow-300" },
+      { label: "Hard", value: "3", tone: "text-rose-300" },
+    ],
   },
 ];
 
@@ -60,10 +62,10 @@ const CodingProfiles = () => {
               Coding Profiles
             </div>
             <h1 className="mx-auto max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl">
-              Competitive coding and problem-solving profiles.
+              Problem Solving & DSA
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-              Explore my coding practice platforms where I keep improving problem-solving, DSA thinking, and consistency.
+              I actively practice Data Structures & Algorithms to strengthen my problem-solving skills. I have solved 80+ problems on LeetCode with a focus on arrays, strings, and hashing.
             </p>
           </section>
 
@@ -88,6 +90,22 @@ const CodingProfiles = () => {
                   <h2 className="text-3xl font-bold text-white">{profile.name}</h2>
                   <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cyan-300">{profile.handle}</p>
                   <p className="mt-5 text-base leading-7 text-slate-300">{profile.description}</p>
+
+                  {profile.stats.length > 0 && (
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                      {profile.stats.map((item) => (
+                        <div
+                          key={item.label}
+                          className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
+                        >
+                          <div className={`text-2xl font-black ${item.tone}`}>{item.value}</div>
+                          <div className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">
+                            {item.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {profile.badgeRatings.length > 0 && (
                     <div className="mt-6">
@@ -139,10 +157,18 @@ const CodingProfiles = () => {
                       <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-300">
                         {profile.certificates.map((item) => (
                           <li
-                            key={item}
+                            key={item.title}
                             className="rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.08),rgba(255,255,255,0.03))] px-4 py-3"
                           >
-                            <span className="font-medium text-cyan-200">Certificate:</span> {item}
+                            <span className="font-medium text-cyan-200">Certificate:</span>{" "}
+                            <a
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium text-white underline decoration-cyan-300/60 underline-offset-4 transition-colors hover:text-cyan-200"
+                            >
+                              {item.title}
+                            </a>
                           </li>
                         ))}
                       </ul>

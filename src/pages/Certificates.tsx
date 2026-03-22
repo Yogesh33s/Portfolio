@@ -21,24 +21,39 @@ const Certificates = () => {
           </div>
 
           <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-10">
-            {content.certificates.items.map((cert) => (
-              <div key={cert.id} className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden hover:scale-105 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.35)] transition duration-300">
-                <Link
-                  to={`/certificate?title=${encodeURIComponent(cert.title)}&issuer=${encodeURIComponent(cert.issuer)}&image=${encodeURIComponent(cert.image)}&source=certificates`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative block"
-                >
-                  <img src={cert.image} alt={cert.title} className="w-full h-48 object-cover" />
-                </Link>
+            {content.certificates.items.map((cert) => {
+              const shouldOpenExternal = Boolean(cert.externalUrl) && cert.issuer !== "HackerRank";
 
-                <div className="p-5 text-center min-h-[150px]">
-                  <h3 className="text-white font-semibold text-lg">{cert.title}</h3>
-                  <p className="text-gray-400 text-sm mt-1">{cert.issuer}</p>
-                  <p className="text-gray-300 text-sm mt-3 leading-relaxed">{cert.summary}</p>
+              return (
+                <div key={cert.id} className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden hover:scale-105 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.35)] transition duration-300">
+                  {shouldOpenExternal ? (
+                    <a
+                      href={cert.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block"
+                    >
+                      <img src={cert.image} alt={cert.title} className="w-full h-48 object-cover" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={`/certificate?title=${encodeURIComponent(cert.title)}&issuer=${encodeURIComponent(cert.issuer)}&image=${encodeURIComponent(cert.image)}&source=certificates`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block"
+                    >
+                      <img src={cert.image} alt={cert.title} className="w-full h-48 object-cover" />
+                    </Link>
+                  )}
+
+                  <div className="p-5 text-center min-h-[150px]">
+                    <h3 className="text-white font-semibold text-lg">{cert.title}</h3>
+                    <p className="text-gray-400 text-sm mt-1">{cert.issuer}</p>
+                    <p className="text-gray-300 text-sm mt-3 leading-relaxed">{cert.summary}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent my-16"></div>
 

@@ -57,6 +57,7 @@ export type CertificateItem = {
   issuer: string;
   image: string;
   summary: string;
+  externalUrl?: string;
 };
 
 export type CertificatesContent = {
