@@ -9,6 +9,12 @@ import Certificates from "./pages/Certificates";
 import CertificateView from "./pages/CertificateView";
 import Contact from "./pages/Contact";
 import { ThemeProvider } from "./components/ThemeContext";
+import { PortfolioContentProvider } from "./contexts/PortfolioContentContext";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+import AdminLoginModal, { ADMIN_ROUTE } from "./components/admin/AdminLoginModal";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   useEffect(() => {
@@ -44,16 +50,30 @@ function App() {
       <div className="portfolio-shell">
         <div className="portfolio-cursor-glow" aria-hidden="true" />
         <Router>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/learning" element={<Learning />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/certificate" element={<CertificateView />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <PortfolioContentProvider>
+            <AdminAuthProvider>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/learning" element={<Learning />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/certificates" element={<Certificates />} />
+                <Route path="/certificate" element={<CertificateView />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route
+                  path={ADMIN_ROUTE}
+                  element={
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+              <AdminLoginModal />
+              <Toaster />
+            </AdminAuthProvider>
+          </PortfolioContentProvider>
         </Router>
       </div>
     </ThemeProvider>

@@ -1,14 +1,18 @@
-
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeContext";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const { openLoginModal } = useAdminAuth();
+  const clickTimerRef = useRef<number | null>(null);
+  const longPressRef = useRef<number | null>(null);
+  const [, setTapCount] = useState(0);
 
   const navItems = [
   { name: "Home", path: "/" },
@@ -22,11 +26,49 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const openHiddenAdmin = () => {
+    openLoginModal();
+    setTapCount(0);
+    if (clickTimerRef.current) window.clearTimeout(clickTimerRef.current);
+  };
+
+  const handleBrandClick = () => {
+    setTapCount((current) => {
+      const next = current + 1;
+      if (clickTimerRef.current) window.clearTimeout(clickTimerRef.current);
+      clickTimerRef.current = window.setTimeout(() => setTapCount(0), 1600);
+      if (next >= 5) {
+        openHiddenAdmin();
+        return 0;
+      }
+      return next;
+    });
+  };
+
+  const handleLongPressStart = () => {
+    longPressRef.current = window.setTimeout(() => openHiddenAdmin(), 700);
+  };
+
+  const handleLongPressEnd = () => {
+    if (longPressRef.current) {
+      window.clearTimeout(longPressRef.current);
+      longPressRef.current = null;
+    }
+  };
+
   return (
     <nav className="theme-nav fixed top-0 w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="theme-nav-brand text-2xl font-bold text-white hover:text-cyan-400 transition-colors">
+          <Link
+            to="/"
+            onClick={handleBrandClick}
+            onPointerDown={handleLongPressStart}
+            onPointerUp={handleLongPressEnd}
+            onPointerLeave={handleLongPressEnd}
+            onPointerCancel={handleLongPressEnd}
+            className="theme-nav-brand text-2xl font-bold text-white hover:text-cyan-400 transition-colors"
+          >
             Yogesh<span className="text-cyan-400"></span>
           </Link>
           
