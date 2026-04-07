@@ -5,6 +5,42 @@ export type AboutCard = {
   iconKey: string;
 };
 
+export type HomeStat = {
+  id: string;
+  value: string;
+  label: string;
+};
+
+export type HomeSocialLink = {
+  id: string;
+  label: string;
+  url: string;
+  displayText?: string;
+};
+
+export type HomeContent = {
+  badge: string;
+  intro: string;
+  name: string;
+  roles: string[];
+  summary: string;
+  primaryCtaLabel: string;
+  primaryCtaUrl: string;
+  resumeLabel: string;
+  resumeUrl: string;
+  socialLinks: HomeSocialLink[];
+  availabilityText: string;
+  imageUrl: string;
+  imageAlt: string;
+  location: string;
+  imageCardText: string;
+  stats: HomeStat[];
+  connectBadge: string;
+  connectTitle: string;
+  connectDescription: string;
+  connectLinks: HomeSocialLink[];
+};
+
 export type AboutSection = {
   badge: string;
   quote: string;
@@ -139,6 +175,7 @@ export type EducationContent = {
 };
 
 export type PortfolioContent = {
+  home: HomeContent;
   about: AboutSection;
   skills: SkillsContent;
   projects: ProjectsContent;
@@ -148,6 +185,7 @@ export type PortfolioContent = {
 };
 
 export type ContentSectionKey =
+  | "home"
   | "about"
   | "skills"
   | "projects"

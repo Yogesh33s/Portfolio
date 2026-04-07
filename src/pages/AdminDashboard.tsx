@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAdminAuth } from "@/contexts/AdminAuthContext";
 import { usePortfolioContent } from "@/contexts/PortfolioContentContext";
 import { useToast } from "@/hooks/use-toast";
-import type { ContentSectionKey, PortfolioContent, ProjectItem } from "@/types/portfolio";
+import type { ContentSectionKey, HomeSocialLink, HomeStat, PortfolioContent, ProjectItem } from "@/types/portfolio";
 
 const cardClass = "rounded-3xl border border-white/10 bg-slate-900/70 p-5 backdrop-blur-md";
 const uid = (prefix: string) => `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
           <section className="rounded-[2rem] border border-cyan-400/15 bg-white/5 p-8 backdrop-blur-md">
             <h1 className="text-4xl font-black">Hidden Portfolio Admin</h1>
             <p className="mt-3 max-w-3xl text-slate-300">
-              Add, remove, and update your About, Skills, Projects, Certificates, Coding, and Learning content from here.
+              Add, remove, and update your Home, About, Skills, Projects, Certificates, Coding, and Learning content from here.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button onClick={() => { logout(); navigate("/"); }} variant="outline" className="border-white/10 bg-white/5 text-white">
@@ -70,6 +70,7 @@ const AdminDashboard = () => {
 
           <Tabs defaultValue="about" className="space-y-6">
             <TabsList className="flex h-auto flex-wrap justify-start gap-2 rounded-2xl border border-white/10 bg-slate-900/70 p-2">
+              <TabsTrigger value="home">Home</TabsTrigger>
               <TabsTrigger value="about">About</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
               <TabsTrigger value="projects">Projects</TabsTrigger>
@@ -78,6 +79,113 @@ const AdminDashboard = () => {
               <TabsTrigger value="education">Learning</TabsTrigger>
               <TabsTrigger value="security">Security</TabsTrigger>
             </TabsList>
+
+            <TabsContent value="home" className="space-y-4">
+              <div className={cardClass}>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Field label="Badge" value={draft.home.badge} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, badge: value } }))} />
+                  <Field label="Intro" value={draft.home.intro} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, intro: value } }))} />
+                  <Field label="Name" value={draft.home.name} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, name: value } }))} />
+                  <Field label="Roles (comma separated)" value={draft.home.roles.join(", ")} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, roles: splitComma(value) } }))} />
+                  <Field label="Primary Button Label" value={draft.home.primaryCtaLabel} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, primaryCtaLabel: value } }))} />
+                  <Field label="Primary Button URL" value={draft.home.primaryCtaUrl} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, primaryCtaUrl: value } }))} />
+                  <Field label="Resume Button Label" value={draft.home.resumeLabel} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, resumeLabel: value } }))} />
+                  <Field label="Resume URL" value={draft.home.resumeUrl} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, resumeUrl: value } }))} />
+                  <Field label="Availability Text" value={draft.home.availabilityText} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, availabilityText: value } }))} />
+                  <Field label="Location" value={draft.home.location} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, location: value } }))} />
+                  <Field label="Profile Image URL" value={draft.home.imageUrl} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, imageUrl: value } }))} />
+                  <Field label="Profile Image Alt" value={draft.home.imageAlt} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, imageAlt: value } }))} />
+                </div>
+                <div className="mt-4 grid gap-4">
+                  <FieldArea label="Summary" value={draft.home.summary} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, summary: value } }))} />
+                  <FieldArea label="Profile Card Text" value={draft.home.imageCardText} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, imageCardText: value } }))} />
+                  <Field label="Connect Badge" value={draft.home.connectBadge} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, connectBadge: value } }))} />
+                  <Field label="Connect Title" value={draft.home.connectTitle} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, connectTitle: value } }))} />
+                  <FieldArea label="Connect Description" value={draft.home.connectDescription} onChange={(value) => setDraft((current) => ({ ...current, home: { ...current.home, connectDescription: value } }))} />
+                </div>
+              </div>
+
+              <div className={cardClass}>
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-lg font-semibold">Hero Social Links</h3>
+                  <Button onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, socialLinks: [...current.home.socialLinks, emptyHomeLink("social")] } }))} variant="outline" className="border-white/10 bg-white/5 text-white">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Link
+                  </Button>
+                </div>
+                <div className="space-y-3">
+                  {draft.home.socialLinks.map((item) => (
+                    <div key={item.id} className="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <h4 className="font-medium">{item.label}</h4>
+                        <DeleteButton onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, socialLinks: current.home.socialLinks.filter((link) => link.id !== item.id) } }))} />
+                      </div>
+                      <div className="grid gap-4 md:grid-cols-3">
+                        <Field label="Label" value={item.label} onChange={(value) => updateHomeSocialLink(item.id, { label: value })} />
+                        <Field label="URL" value={item.url} onChange={(value) => updateHomeSocialLink(item.id, { url: value })} />
+                        <Field label="Display Text" value={item.displayText || ""} onChange={(value) => updateHomeSocialLink(item.id, { displayText: value })} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={cardClass}>
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-lg font-semibold">Home Stats</h3>
+                  <Button onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, stats: [...current.home.stats, emptyHomeStat()] } }))} variant="outline" className="border-white/10 bg-white/5 text-white">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Stat
+                  </Button>
+                </div>
+                <div className="space-y-3">
+                  {draft.home.stats.map((item) => (
+                    <div key={item.id} className="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <h4 className="font-medium">{item.label}</h4>
+                        <DeleteButton onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, stats: current.home.stats.filter((stat) => stat.id !== item.id) } }))} />
+                      </div>
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <Field label="Value" value={item.value} onChange={(value) => updateHomeStat(item.id, { value })} />
+                        <Field label="Label" value={item.label} onChange={(value) => updateHomeStat(item.id, { label: value })} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={cardClass}>
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-lg font-semibold">Connect Links</h3>
+                  <Button onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, connectLinks: [...current.home.connectLinks, emptyHomeLink("connect")] } }))} variant="outline" className="border-white/10 bg-white/5 text-white">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Connect Link
+                  </Button>
+                </div>
+                <div className="space-y-3">
+                  {draft.home.connectLinks.map((item) => (
+                    <div key={item.id} className="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <h4 className="font-medium">{item.label}</h4>
+                        <DeleteButton onClick={() => setDraft((current) => ({ ...current, home: { ...current.home, connectLinks: current.home.connectLinks.filter((link) => link.id !== item.id) } }))} />
+                      </div>
+                      <div className="grid gap-4 md:grid-cols-3">
+                        <Field label="Label" value={item.label} onChange={(value) => updateHomeConnectLink(item.id, { label: value })} />
+                        <Field label="URL" value={item.url} onChange={(value) => updateHomeConnectLink(item.id, { url: value })} />
+                        <Field label="Display Text" value={item.displayText || ""} onChange={(value) => updateHomeConnectLink(item.id, { displayText: value })} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Button onClick={() => saveSection("home")} className="bg-gradient-to-r from-cyan-500 to-blue-500 text-slate-950 hover:from-cyan-400 hover:to-blue-400">
+                  <Save className="mr-2 h-4 w-4" />
+                  Save Home
+                </Button>
+              </div>
+            </TabsContent>
 
             <TabsContent value="about" className="space-y-4">
               <div className={cardClass}>
@@ -379,6 +487,27 @@ const AdminDashboard = () => {
       },
     }));
   }
+
+  function updateHomeStat(id: string, patch: Partial<HomeStat>) {
+    setDraft((current) => ({
+      ...current,
+      home: { ...current.home, stats: current.home.stats.map((item) => (item.id === id ? { ...item, ...patch } : item)) },
+    }));
+  }
+
+  function updateHomeSocialLink(id: string, patch: Partial<HomeSocialLink>) {
+    setDraft((current) => ({
+      ...current,
+      home: { ...current.home, socialLinks: current.home.socialLinks.map((item) => (item.id === id ? { ...item, ...patch } : item)) },
+    }));
+  }
+
+  function updateHomeConnectLink(id: string, patch: Partial<HomeSocialLink>) {
+    setDraft((current) => ({
+      ...current,
+      home: { ...current.home, connectLinks: current.home.connectLinks.map((item) => (item.id === id ? { ...item, ...patch } : item)) },
+    }));
+  }
 };
 
 const emptyProject = (): ProjectItem => ({
@@ -409,6 +538,19 @@ const emptyCodingProfile = (): PortfolioContent["coding"]["profiles"][number] =>
   description: "Describe this coding profile.",
   badgeRatings: [],
   stats: [],
+});
+
+const emptyHomeStat = (): HomeStat => ({
+  id: uid("home-stat"),
+  value: "0+",
+  label: "New Stat",
+});
+
+const emptyHomeLink = (prefix: string): HomeSocialLink => ({
+  id: uid(`home-${prefix}`),
+  label: "New Link",
+  url: "https://",
+  displayText: "",
 });
 
 const clampStars = (value: string) => {

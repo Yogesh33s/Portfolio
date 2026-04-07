@@ -13,6 +13,13 @@ const mergeById = <T extends { id: string }>(defaults: T[], saved: T[] = []) => 
 };
 
 const mergeWithDefaults = (saved: Partial<PortfolioContent>): PortfolioContent => ({
+  home: {
+    ...defaultPortfolioContent.home,
+    ...saved.home,
+    socialLinks: mergeById(defaultPortfolioContent.home.socialLinks, saved.home?.socialLinks),
+    stats: mergeById(defaultPortfolioContent.home.stats, saved.home?.stats),
+    connectLinks: mergeById(defaultPortfolioContent.home.connectLinks, saved.home?.connectLinks),
+  },
   about: {
     ...defaultPortfolioContent.about,
     ...saved.about,

@@ -1,6 +1,57 @@
 import type { PortfolioContent } from "@/types/portfolio";
 
 export const defaultPortfolioContent: PortfolioContent = {
+  home: {
+    badge: "Welcome to my portfolio",
+    intro: "I'm",
+    name: "Yogesh",
+    roles: ["Full Stack Developer", "Data Enthusiast"],
+    summary:
+      "I am growing through self-learning, college projects, and hands-on practice, with a strong interest in building clean web experiences and working with data to understand patterns, solve problems, and create better solutions. I enjoy learning by creating, improving, and turning each project into a step toward becoming a stronger developer and data-driven thinker.",
+    primaryCtaLabel: "See My Projects",
+    primaryCtaUrl: "/projects",
+    resumeLabel: "Download Resume",
+    resumeUrl: "/YogeshCV.pdf",
+    socialLinks: [
+      { id: "home-social-github", label: "GitHub", url: "https://github.com/Yogesh33s" },
+      { id: "home-social-linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/yogesh33/" },
+      { id: "home-social-email", label: "Email", url: "mailto:yogeshranwa33@gmail.com" },
+    ],
+    availabilityText: "Available for growth",
+    imageUrl: "/M.jpg",
+    imageAlt: "Yogesh Profile",
+    location: "Punjab, India",
+    imageCardText: "Building with creativity, curiosity, and a focus on practical impact.",
+    stats: [
+      { id: "home-stat-cgpa", value: "8+", label: "CGPA" },
+      { id: "home-stat-projects", value: "7+", label: "Projects Built" },
+      { id: "home-stat-tech", value: "5+", label: "Core Technologies" },
+    ],
+    connectBadge: "Connect With Me",
+    connectTitle: "Let's build something meaningful.",
+    connectDescription:
+      "Explore more on my profiles or reach out directly if you want to collaborate, connect, or talk about opportunities.",
+    connectLinks: [
+      {
+        id: "home-connect-linkedin",
+        label: "LinkedIn",
+        url: "https://www.linkedin.com/in/yogesh33/",
+        displayText: "linkedin.com/in/yogesh33",
+      },
+      {
+        id: "home-connect-github",
+        label: "GitHub",
+        url: "https://github.com/Yogesh33s",
+        displayText: "github.com/Yogesh33s",
+      },
+      {
+        id: "home-connect-email",
+        label: "Email",
+        url: "mailto:yogeshranwa33@gmail.com",
+        displayText: "yogeshranwa33@gmail.com",
+      },
+    ],
+  },
   about: {
     badge: "About Me",
     quote: "I believe in learning by building and improving through consistency.",
